@@ -74,12 +74,9 @@ def engage():
   dy=dot[i].y
   dz=dot[i].z
   m=offset*math.sqrt(2)/math.sqrt(dx*dx+dy*dy+dz*dz)
-  dx=m*dx
-  dy=m*dy
-  dz=m*dz
-  dot[i].vx=k*(dx-dot[i].x)
-  dot[i].vy=k*(dy-dot[i].y)
-  dot[i].vz=k*(dz-dot[i].z)
+  dot[i].vx=k*(m*dx-dot[i].x)
+  dot[i].vy=k*(m*dy-dot[i].y)
+  dot[i].vz=k*(m*dz-dot[i].z)
 
 
 def spinModel(t):
@@ -97,7 +94,7 @@ def spinModel(t):
   va%=2*math.pi
   px=-math.sin(va)*di
   py=-math.cos(va)*di
-  C.delete("dot")
+  C.delete("sphere")
   for i in range(c):
    dot[i].x+=dot[i].vx
    dot[i].y+=dot[i].vy
@@ -106,7 +103,7 @@ def spinModel(t):
    for j in range(len(dot[i].link)):
     x2,y2=getXY(dot[dot[i].link[j]])
     cc=(i^j)%len(color)
-    C.create_line(x1,y1,x2,y2,fill=color[cc],tags="dot")
+    C.create_line(x1,y1,x2,y2,fill=color[cc],tags="sphere")
   top.update()
 
 

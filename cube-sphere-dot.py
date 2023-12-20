@@ -46,12 +46,9 @@ def engage():
   dy=cy[i]
   dz=cz[i]
   m=offset*math.sqrt(2)/math.sqrt(dx*dx+dy*dy+dz*dz)
-  dx=m*dx
-  dy=m*dy
-  dz=m*dz
-  vx[i]=k*(dx-cx[i])
-  vy[i]=k*(dy-cy[i])
-  vz[i]=k*(dz-cz[i])
+  vx[i]=k*(m*dx-cx[i])
+  vy[i]=k*(m*dy-cy[i])
+  vz[i]=k*(m*dz-cz[i])
 
 
 def spinModel(t):
@@ -130,7 +127,7 @@ say(6,
 
 say(6,
  "So let's change our cube into a sphere\n"
- "by moving all vertices to the desired radius."
+ "by moving all the dots to the desired radius."
 )
 
 engage()
